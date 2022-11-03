@@ -1,18 +1,10 @@
 import json
 from email import charset
+from flask import request
 
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-
-from database import init_database
 from models import User, Order, Offer
-
-app = Flask(__name__)
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-db = SQLAlchemy(app)
+from config import app, db
+from database import init_database
 
 
 @app.route("/users", methods=["GET", "POST"])
